@@ -81,7 +81,7 @@ const Modal = ({ onAdd, onClose }) => {
   return (
     <ModalContainer>
       <ModalBar />
-      <CloseBtn onClick={onClose}></CloseBtn>
+      <CloseBtn onClick={onClose}>X</CloseBtn>
       <BtnGroup>
         <InputLabel htmlFor="todo-input">할 일</InputLabel>
         <InputBox

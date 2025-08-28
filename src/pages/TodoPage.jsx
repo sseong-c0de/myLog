@@ -72,7 +72,15 @@ const AddBtn = styled.button.attrs({ type: "button" })`
 const Todolist = styled.div`
   line-height: 40px;
 `;
-
+const EditInput = styled.input`
+  flex: 1;
+  line-height: 40px;
+  font-size: 1.6rem;
+  padding: 4px 8px;
+  margin-right: 8px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+`;
 const TodoPage = () => {
   const { year, month, day } = useParams();
   const urlDate =
@@ -112,6 +120,37 @@ const TodoPage = () => {
   const [toggleModal, setToggleModal] = useState(false);
   const openModal = () => setToggleModal(true);
   const closeModal = () => setToggleModal(false);
+  const [editingId, setEditingId] = useState(null);
+  const [editingText, setEditingText] = useState("");
+  const startEdit = (id, currentText) => {
+    setEditingId(id);
+    setEditingText(currentText);
+  };
+  const saveEdit = () => {
+    if (editingId === null) return;
+    const trimmed = editingText.trim();
+    if (!trimmed) return;
+    setTodos((prev) => {
+      const next = prev.map((item) =>
+        item.id === editingId ? { ...item, text: trimmed } : item
+      );
+      localStorage.setItem(storageKey, JSON.stringify(next));
+      return next;
+    });
+    setEditingId(null);
+    setEditingText("");
+  };
+  const cancelEdit = () => {
+    setEditingId(null);
+    setEditingText("");
+  };
+  const handleDelete = (id) => {
+    setTodos((prev) => {
+      const next = prev.filter((item) => item.id !== id);
+      localStorage.setItem(storageKey, JSON.stringify(next));
+      return next;
+    });
+  };
   return (
     <div>
       <DateHeader
@@ -128,13 +167,43 @@ const TodoPage = () => {
                 <CheckBox
                   checked={t.done}
                   onChange={() => toggleTodoDone(t.id)}
-                ></CheckBox>
-                <Todolist>{t.text}</Todolist>
+                />
 
-                <BtnGroup>
-                  <ReBox></ReBox>
-                  <DeleteBox></DeleteBox>
-                </BtnGroup>
+                {editingId === t.id ? (
+                  <>
+                    <EditInput
+                      value={editingText}
+                      onChange={(e) => setEditingText(e.target.value)}
+                      onKeyDown={(e) => {
+                        if (e.key === "Enter") saveEdit();
+                        if (e.key === "Escape") cancelEdit();
+                      }}
+                    />
+                    <BtnGroup>
+                      <ReBox title="저장" onClick={saveEdit}>
+                        💾
+                      </ReBox>
+                    </BtnGroup>
+                  </>
+                ) : (
+                  <>
+                    <Todolist>{t.text}</Todolist>
+                    <BtnGroup>
+                      <ReBox
+                        title="수정"
+                        onClick={() => startEdit(t.id, t.text)}
+                      >
+                        ✏️
+                      </ReBox>
+                      <DeleteBox
+                        title="삭제"
+                        onClick={() => handleDelete(t.id)}
+                      >
+                        🗑️
+                      </DeleteBox>
+                    </BtnGroup>
+                  </>
+                )}
               </TodoLi>
             ))}
           </TodoUl>
