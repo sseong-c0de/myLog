@@ -83,6 +83,7 @@ Please change the parent <Route path="${H}"> to <Route path="${H==="/"?"*":`${H}
   width: 100%;
 `,aS=mt.div`
   width: 83.33%;
+  max-width: 300px;
   display: flex;
   flex-wrap: wrap;
   margin: 0 auto;
@@ -144,6 +145,7 @@ Please change the parent <Route path="${H}"> to <Route path="${H==="/"?"*":`${H}
   width: 100%;
 `,Gm=mt.div`
   width: 83.33%;
+  max-width: 300px;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
