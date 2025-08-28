@@ -5,6 +5,7 @@ const BtnContainer = styled.div`
 `;
 const BtnGroup = styled.div`
   width: 83.33%;
+  max-width: 300px;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;

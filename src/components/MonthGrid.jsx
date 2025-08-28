@@ -4,6 +4,7 @@ const MonthContainer = styled.div`
 `;
 const MonthGroup = styled.div`
   width: 83.33%;
+  max-width: 300px;
   display: flex;
   flex-wrap: wrap;
   margin: 0 auto;
