@@ -61,10 +61,21 @@ const AddBox = styled.button.attrs({ type: "button" })`
   font-size: 2rem;
 `;
 const CloseBtn = styled.button`
-  width: 50px;
-  height: 50px;
-  background: #d9d9d9;
+  width: 30px;
+  height: 30px;
+  background: #ffff;
+  border: none;
+  border-radius: 10px;
+  margin-left: auto;
 `;
+const CloseRow = styled.div`
+  width: 83.33%;
+  margin: 0 auto;
+  display: flex;
+
+  justify-content: flex-end;
+`;
+
 const Modal = ({ onAdd, onClose }) => {
   const [isComposing, setComposing] = useState(false);
   const [text, setText] = useState("");
@@ -81,7 +92,10 @@ const Modal = ({ onAdd, onClose }) => {
   return (
     <ModalContainer>
       <ModalBar />
-      <CloseBtn onClick={onClose}>X</CloseBtn>
+      <CloseRow>
+        <CloseBtn onClick={onClose}>X</CloseBtn>
+      </CloseRow>
+
       <BtnGroup>
         <InputLabel htmlFor="todo-input">할 일</InputLabel>
         <InputBox
