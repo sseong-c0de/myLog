@@ -1,6 +1,6 @@
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import DateHeader from "../components/DateHeader";
-import { format } from "date-fns";
+import { format, addDays } from "date-fns";
 import { ko } from "date-fns/locale";
 import styled from "styled-components";
 import Modal from "../components/Modal";
@@ -83,6 +83,7 @@ const EditInput = styled.input`
 `;
 const TodoPage = () => {
   const { year, month, day } = useParams();
+  const navigate = useNavigate();
   const urlDate =
     year && month && day
       ? new Date(Number(year), Number(month) - 1, Number(day))
@@ -151,10 +152,29 @@ const TodoPage = () => {
       return next;
     });
   };
+  const viewDate = urlDate ?? date ?? new Date();
+  const goPrev = () => {
+    const d = addDays(viewDate, -1);
+    navigate(
+      `/${format(d, "yyyy")}/${Number(format(d, "M"))}/${Number(
+        format(d, "dd")
+      )}/todo`
+    );
+  };
+  const goNext = () => {
+    const d = addDays(viewDate, 1);
+    navigate(
+      `/${format(d, "yyyy")}/${Number(format(d, "M"))}/${Number(
+        format(d, "dd")
+      )}/todo`
+    );
+  };
   return (
     <div>
       <DateHeader
         title={title}
+        onNext={goNext}
+        onPrev={goPrev}
         titleDay={format(urlDate, "MM.dd (EEE)", { locale: ko })}
       ></DateHeader>
 
