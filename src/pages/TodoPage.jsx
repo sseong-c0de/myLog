@@ -56,12 +56,14 @@ const BtnGroup = styled.div`
   justify-content: space-between;
   margin-top: 5px;
 `;
-const AddBtn = styled.button.attrs({ type: "button" })`
-  position: fixed;
-  top: 50%;
-  left: 48%;
+const AddBtnBox = styled.div`
   width: 30px;
   height: 30px;
+  margin: 0 auto;
+`;
+const AddBtn = styled.button.attrs({ type: "button" })`
+  top: 50%;
+  left: 48%;
   background: #bbd8ea;
   border-radius: 100%;
   border: none;
@@ -177,8 +179,6 @@ const TodoPage = () => {
         onPrev={goPrev}
         titleDay={format(urlDate, "MM.dd (EEE)", { locale: ko })}
       ></DateHeader>
-
-      <AddBtn onClick={openModal}>+</AddBtn>
       <TodoContainer>
         <TodoGroup>
           <TodoUl>
@@ -227,6 +227,9 @@ const TodoPage = () => {
               </TodoLi>
             ))}
           </TodoUl>
+          <AddBtnBox>
+            <AddBtn onClick={openModal}>+</AddBtn>
+          </AddBtnBox>
         </TodoGroup>
       </TodoContainer>
       {/* <ul style={{ padding: "12px 24px" }}></ul> */}
