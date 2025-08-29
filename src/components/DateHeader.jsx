@@ -10,7 +10,7 @@ const HeaderContainer = styled.div`
 const Title = styled.h1`
   color: #4682b4;
   font-size: 2.8rem;
-  padding: 0px 30px 0px 30px;
+  padding: 0px 20px 0px 20px;
 `;
 const TitleDay = styled.div`
   color: #4682b4;
@@ -24,6 +24,7 @@ const Arrow = styled.button`
   color: #4682b4;
   font-size: 2rem;
   font-weight: bold;
+  padding: 0;
 `;
 const DateHeader = ({ title, onNext, onPrev, titleDay }) => {
   return (
