@@ -219,25 +219,34 @@ Please change the parent <Route path="${H}"> to <Route path="${H==="/"?"*":`${H}
   background: #87cefa;
   font-size: 2rem;
 `,tE=ht.button`
-  width: 50px;
-  height: 50px;
-  background: #d9d9d9;
-`,eE=({onAdd:l,onClose:r})=>{const[f,c]=_.useState(!1),[o,d]=_.useState(""),y=()=>{const g=o.trim();g&&(l?.(g),d(""))},S=g=>{g.key==="Enter"&&!f&&y()};return Q.jsxs(JS,{children:[Q.jsx(WS,{}),Q.jsx(tE,{onClick:r,children:"X"}),Q.jsxs($S,{children:[Q.jsx(PS,{htmlFor:"todo-input",children:"할 일"}),Q.jsx(FS,{placeholder:"할 일을 입력하세요",value:o,onChange:g=>{d(g.target.value)},onCompositionStart:()=>c(!0),onCompositionEnd:()=>c(!1),onKeyDown:S}),Q.jsx(IS,{onClick:y,children:"추가"})]})]})},aE=ht.div`
+  width: 30px;
+  height: 30px;
+  background: #ffff;
+  border: none;
+  border-radius: 10px;
+  margin-left: auto;
+`,eE=ht.div`
+  width: 83.33%;
+  margin: 0 auto;
+  display: flex;
+
+  justify-content: flex-end;
+`,aE=({onAdd:l,onClose:r})=>{const[f,c]=_.useState(!1),[o,d]=_.useState(""),y=()=>{const g=o.trim();g&&(l?.(g),d(""))},S=g=>{g.key==="Enter"&&!f&&y()};return Q.jsxs(JS,{children:[Q.jsx(WS,{}),Q.jsx(eE,{children:Q.jsx(tE,{onClick:r,children:"X"})}),Q.jsxs($S,{children:[Q.jsx(PS,{htmlFor:"todo-input",children:"할 일"}),Q.jsx(FS,{placeholder:"할 일을 입력하세요",value:o,onChange:g=>{d(g.target.value)},onCompositionStart:()=>c(!0),onCompositionEnd:()=>c(!1),onKeyDown:S}),Q.jsx(IS,{onClick:y,children:"추가"})]})]})},nE=ht.div`
   width: 100%;
   padding-top: 30px;
-`,nE=ht.div`
+`,lE=ht.div`
   width: 83.33%;
 
   margin: 0 auto;
-`,lE=ht.ul`
+`,uE=ht.ul`
   width: 100%;
   font-size: 2rem;
-`,uE=ht.li`
+`,iE=ht.li`
   width: 100%;
   margin-bottom: 10px;
   display: flex;
   justify-content: space-between;
-`,iE=ht.input.attrs({type:"checkbox"})`
+`,rE=ht.input.attrs({type:"checkbox"})`
   width: 30px;
   height: 30px;
   cursor: pointer;
@@ -253,7 +262,7 @@ Please change the parent <Route path="${H}"> to <Route path="${H==="/"?"*":`${H}
   border: none;
   border-radius: 10px;
   padding: 0;
-`,rE=ht.button`
+`,cE=ht.button`
   width: 30px;
   height: 30px;
   background: #ffadad;
@@ -265,7 +274,7 @@ Please change the parent <Route path="${H}"> to <Route path="${H==="/"?"*":`${H}
   display: flex;
   justify-content: space-between;
   margin-top: 5px;
-`,cE=ht.button.attrs({type:"button"})`
+`,fE=ht.button.attrs({type:"button"})`
   position: fixed;
   top: 50%;
   left: 48%;
@@ -277,9 +286,9 @@ Please change the parent <Route path="${H}"> to <Route path="${H==="/"?"*":`${H}
   font-size: 2.4rem;
   font-weight: bold;
   color: #7bafd4;
-`,fE=ht.div`
+`,oE=ht.div`
   line-height: 40px;
-`,oE=ht.input`
+`,sE=ht.input`
   flex: 1;
   line-height: 40px;
   font-size: 1.6rem;
@@ -287,4 +296,4 @@ Please change the parent <Route path="${H}"> to <Route path="${H==="/"?"*":`${H}
   margin-right: 8px;
   border: 1px solid #ccc;
   border-radius: 6px;
-`,sE=()=>{const{year:l,month:r,day:f}=lr(),c=gn(),o=l&&r&&f?new Date(Number(l),Number(r)-1,Number(f)):new Date,d="할 일 목록",y=`mylog:todos:${jt(o,"yyyy-M-d")}`,[S,g]=_.useState([]);_.useEffect(()=>{try{const nt=localStorage.getItem(y);g(nt?JSON.parse(nt):[])}catch(nt){console.warn("Todo error",nt),g([])}},[y]);const m=nt=>{const St={id:Date.now(),text:nt,done:!1};g(Et=>{const Ct=[...Et,St];return localStorage.setItem(y,JSON.stringify(Ct)),Ct})},x=nt=>{g(St=>{const Et=St.map(Ct=>Ct.id===nt?{...Ct,done:!Ct.done}:Ct);return localStorage.setItem(y,JSON.stringify(Et)),Et})},[A,C]=_.useState(!1),Y=()=>C(!0),B=()=>C(!1),[j,G]=_.useState(null),[H,k]=_.useState(""),Z=(nt,St)=>{G(nt),k(St)},et=()=>{if(j===null)return;const nt=H.trim();nt&&(g(St=>{const Et=St.map(Ct=>Ct.id===j?{...Ct,text:nt}:Ct);return localStorage.setItem(y,JSON.stringify(Et)),Et}),G(null),k(""))},V=()=>{G(null),k("")},at=nt=>{g(St=>{const Et=St.filter(Ct=>Ct.id!==nt);return localStorage.setItem(y,JSON.stringify(Et)),Et})},J=o??date??new Date,Rt=()=>{const nt=bu(J,-1);c(`/${jt(nt,"yyyy")}/${Number(jt(nt,"M"))}/${Number(jt(nt,"dd"))}/todo`)},bt=()=>{const nt=bu(J,1);c(`/${jt(nt,"yyyy")}/${Number(jt(nt,"M"))}/${Number(jt(nt,"dd"))}/todo`)};return Q.jsxs("div",{children:[Q.jsx(mr,{title:d,onNext:bt,onPrev:Rt,titleDay:jt(o,"MM.dd (EEE)",{locale:Yy})}),Q.jsx(cE,{onClick:Y,children:"+"}),Q.jsx(aE,{children:Q.jsx(nE,{children:Q.jsx(lE,{children:S.map(nt=>Q.jsxs(uE,{children:[Q.jsx(iE,{checked:nt.done,onChange:()=>x(nt.id)}),j===nt.id?Q.jsxs(Q.Fragment,{children:[Q.jsx(oE,{value:H,onChange:St=>k(St.target.value),onKeyDown:St=>{St.key==="Enter"&&et(),St.key==="Escape"&&V()}}),Q.jsx(Xm,{children:Q.jsx(Lm,{title:"저장",onClick:et,children:"💾"})})]}):Q.jsxs(Q.Fragment,{children:[Q.jsx(fE,{children:nt.text}),Q.jsxs(Xm,{children:[Q.jsx(Lm,{title:"수정",onClick:()=>Z(nt.id,nt.text),children:"✏️"}),Q.jsx(rE,{title:"삭제",onClick:()=>at(nt.id),children:"🗑️"})]})]})]},nt.id))})})}),A&&Q.jsx(eE,{onAdd:m,onClose:B})]})};function dE(){const[l,r]=_.useState(new Date),f=()=>r(y=>pm(y,1)),c=()=>r(y=>pm(y,-1)),o=gn(),d=y=>{const S=Number(jt(l,"yyyy"));o(`/${S}/${y+1}`)};return Q.jsx("div",{children:Q.jsxs(ty,{children:[Q.jsx(ll,{path:"/",element:Q.jsx(iS,{date:l,onNext:f,onPrev:c,onPickMonth:d})}),Q.jsx(ll,{path:"/:year/:month",element:Q.jsx(yS,{})}),Q.jsx(ll,{path:"/:year/:month/:day",element:Q.jsx(kS,{})}),Q.jsx(ll,{path:"/:year/:month/:day/todo",element:Q.jsx(sE,{})})]})})}yv.createRoot(document.getElementById("root")).render(Q.jsx(_.StrictMode,{children:Q.jsx(A1,{children:Q.jsx(ty,{children:Q.jsx(ll,{path:"/*",element:Q.jsx(dE,{})})})})}));
+`,dE=()=>{const{year:l,month:r,day:f}=lr(),c=gn(),o=l&&r&&f?new Date(Number(l),Number(r)-1,Number(f)):new Date,d="할 일 목록",y=`mylog:todos:${jt(o,"yyyy-M-d")}`,[S,g]=_.useState([]);_.useEffect(()=>{try{const nt=localStorage.getItem(y);g(nt?JSON.parse(nt):[])}catch(nt){console.warn("Todo error",nt),g([])}},[y]);const m=nt=>{const St={id:Date.now(),text:nt,done:!1};g(Et=>{const Ct=[...Et,St];return localStorage.setItem(y,JSON.stringify(Ct)),Ct})},x=nt=>{g(St=>{const Et=St.map(Ct=>Ct.id===nt?{...Ct,done:!Ct.done}:Ct);return localStorage.setItem(y,JSON.stringify(Et)),Et})},[A,C]=_.useState(!1),Y=()=>C(!0),B=()=>C(!1),[j,G]=_.useState(null),[H,k]=_.useState(""),Z=(nt,St)=>{G(nt),k(St)},et=()=>{if(j===null)return;const nt=H.trim();nt&&(g(St=>{const Et=St.map(Ct=>Ct.id===j?{...Ct,text:nt}:Ct);return localStorage.setItem(y,JSON.stringify(Et)),Et}),G(null),k(""))},V=()=>{G(null),k("")},at=nt=>{g(St=>{const Et=St.filter(Ct=>Ct.id!==nt);return localStorage.setItem(y,JSON.stringify(Et)),Et})},J=o??date??new Date,Rt=()=>{const nt=bu(J,-1);c(`/${jt(nt,"yyyy")}/${Number(jt(nt,"M"))}/${Number(jt(nt,"dd"))}/todo`)},bt=()=>{const nt=bu(J,1);c(`/${jt(nt,"yyyy")}/${Number(jt(nt,"M"))}/${Number(jt(nt,"dd"))}/todo`)};return Q.jsxs("div",{children:[Q.jsx(mr,{title:d,onNext:bt,onPrev:Rt,titleDay:jt(o,"MM.dd (EEE)",{locale:Yy})}),Q.jsx(fE,{onClick:Y,children:"+"}),Q.jsx(nE,{children:Q.jsx(lE,{children:Q.jsx(uE,{children:S.map(nt=>Q.jsxs(iE,{children:[Q.jsx(rE,{checked:nt.done,onChange:()=>x(nt.id)}),j===nt.id?Q.jsxs(Q.Fragment,{children:[Q.jsx(sE,{value:H,onChange:St=>k(St.target.value),onKeyDown:St=>{St.key==="Enter"&&et(),St.key==="Escape"&&V()}}),Q.jsx(Xm,{children:Q.jsx(Lm,{title:"저장",onClick:et,children:"💾"})})]}):Q.jsxs(Q.Fragment,{children:[Q.jsx(oE,{children:nt.text}),Q.jsxs(Xm,{children:[Q.jsx(Lm,{title:"수정",onClick:()=>Z(nt.id,nt.text),children:"✏️"}),Q.jsx(cE,{title:"삭제",onClick:()=>at(nt.id),children:"🗑️"})]})]})]},nt.id))})})}),A&&Q.jsx(aE,{onAdd:m,onClose:B})]})};function hE(){const[l,r]=_.useState(new Date),f=()=>r(y=>pm(y,1)),c=()=>r(y=>pm(y,-1)),o=gn(),d=y=>{const S=Number(jt(l,"yyyy"));o(`/${S}/${y+1}`)};return Q.jsx("div",{children:Q.jsxs(ty,{children:[Q.jsx(ll,{path:"/",element:Q.jsx(iS,{date:l,onNext:f,onPrev:c,onPickMonth:d})}),Q.jsx(ll,{path:"/:year/:month",element:Q.jsx(yS,{})}),Q.jsx(ll,{path:"/:year/:month/:day",element:Q.jsx(kS,{})}),Q.jsx(ll,{path:"/:year/:month/:day/todo",element:Q.jsx(dE,{})})]})})}yv.createRoot(document.getElementById("root")).render(Q.jsx(_.StrictMode,{children:Q.jsx(A1,{children:Q.jsx(ty,{children:Q.jsx(ll,{path:"/*",element:Q.jsx(hE,{})})})})}));
