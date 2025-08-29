@@ -67,7 +67,7 @@ Please change the parent <Route path="${H}"> to <Route path="${H==="/"?"*":`${H}
 `,Ib=ht.h1`
   color: #4682b4;
   font-size: 2.8rem;
-  padding: 0px 30px 0px 30px;
+  padding: 0px 20px 0px 20px;
 `,tS=ht.div`
   color: #4682b4;
   font-size: 1.6rem;
@@ -79,6 +79,7 @@ Please change the parent <Route path="${H}"> to <Route path="${H==="/"?"*":`${H}
   color: #4682b4;
   font-size: 2rem;
   font-weight: bold;
+  padding: 0;
 `,mr=({title:l,onNext:r,onPrev:f,titleDay:c})=>G.jsxs(Pb,{children:[G.jsx(qm,{onClick:f,children:"<"}),G.jsx(Ib,{children:l}),G.jsx(tS,{children:c}),G.jsx(qm,{onClick:r,children:">"})]}),eS=ht.div`
   width: 100%;
 `,aS=ht.div`
